@@ -1,0 +1,126 @@
+#header{
+    position: relative;
+    width: 100%;
+}
+
+.menu{
+    /* font-family: 'Emilys Candy', cursive; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--blue);
+
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+}
+
+.menu .logo-box{
+    margin-left: 100px;
+}
+/* .menu .logo-box h1 a{
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: 400;
+    color:white;
+    
+} */
+
+.menu .logo-box  img{
+    margin-top: 7px;
+    width: 70px;
+}
+
+
+.menu .list-container{
+    margin-right: 100px;
+}
+
+.menu .list-container .lists{
+    display: flex;
+}
+
+.menu .list-container .lists li{
+    list-style: none;
+    font-family: 'Raleway',sans-serif;
+}
+
+.menu .list-container .lists a{
+    text-decoration: none;
+    margin: 0px 10px;
+    padding: 8px;
+    color: var(--wt);
+    border-radius: 24px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.menu .list-container .lists a.activo{
+    background: var(--wt);
+    color:var(--black);
+}
+
+.menu .list-container .lists a:hover{
+    background: var(--wt);
+    color:var(--blue);
+}
+
+.btn-menu > .fa-bars{
+    display: none;
+}
+
+@media only screen and (max-width:900px){
+    .btn-menu > .fa-bars{
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 28px;
+    }
+    .btn-menu > .fa-bars:hover{
+        color: var(--wt);
+    }
+    .btn-menu > .fa-times{
+        color: var(--blue);
+    }
+    .menu .list-container{
+        position: absolute;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: var(--wt);
+    }
+    .menu .list-container .lists{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-top: 5px solid var(--blue);
+    }
+    .menu .list-container .lists li{
+        width: 90%;
+        margin: 10px 0px ;
+        border-bottom: 1px solid var(--blue);
+        text-align: center;
+    }
+    .menu .list-container .lists li a{
+        font-size: 20px;
+   }
+    .menu .list-container .lists li a.activo{
+         background: none;
+         color: var(--blue);
+    }
+    .menu .list-container .lists li a:hover {
+        background: none;
+        color: var(--blue);
+   }
+   .menu .logo-box h1{
+       visibility: unset;
+   }
+}

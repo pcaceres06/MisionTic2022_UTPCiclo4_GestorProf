@@ -1,0 +1,67 @@
+/*Nuestros Proyectos*/
+
+.our-projects{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../img/teacher.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    margin-top: 60px;
+    padding-bottom: 100px;
+}
+
+.our-projects .deg-background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .0);
+}
+
+
+.our-projects .container-project{
+    width: 90%;
+    margin: auto;
+    padding-top: 100px;
+}
+
+.our-projects .container-project .project-title{
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+.our-projects .container-project .project-title h2{
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+}
+
+.our-projects .container-project .project-title hr{
+    background: rgb(0, 19, 59);
+    width: 50%;
+    margin: 10px auto;
+}
+
+.our-projects .container-project .project-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    margin-bottom: 100px;
+}
+
+.our-projects .container-project .project-img img{
+    width: calc(30% - 10px);
+    margin: 10px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/*Nuestros Proyectos*/
