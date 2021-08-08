@@ -7,6 +7,11 @@ const config = {
         port:process.env.DB_PORT,
         host:process.env.DB_HOST,
         dbName:process.env.DB_NAME
+    },
+    dbCloud:{
+        dbUser:process.env.DB_USER,
+        dbPass:process.env.DB_PASS,
+        dbName:process.env.DB_NAME
     }
 }
 

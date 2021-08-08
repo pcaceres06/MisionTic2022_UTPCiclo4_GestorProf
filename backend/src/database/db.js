@@ -1,10 +1,21 @@
 const mongoose = require('mongoose');
 
-// Base de datos
-//URI = ('mongodb://localhost/gestorprof');
-
 mongoose.connection.on('open', () => console.log("Base de datos conectada"))
 
+async function connectDbCloud({dbUser,dbPass,dbName}){
+    const URI = `mongodb+srv://${dbUser}:${dbPass}@cluster0.yhw0k.mongodb.net/${dbName}?retryWrites=true&w=majority`
+    await mongoose.connect(URI,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: false
+        })
+}
+
+module.exports = connectDbCloud
+
+/*
 async function conectDB({host,port,dbName}) {
     const URI = `mongodb://${host}:${port}/${dbName}`
     await mongoose.connect(URI,
@@ -17,19 +28,4 @@ async function conectDB({host,port,dbName}) {
 }
 
 module.exports = conectDB
-
-// Conexón
-/*
-mongoose.connect(URI,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false
-    })
-    .then(db=>console.log("Base de datos conectada"))
-    .catch(error=>console.log(error))
-
-// Exportar conexión para poder utilizar el archivo en el servidor
-module.export = mongoose
 */

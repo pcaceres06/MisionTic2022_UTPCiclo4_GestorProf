@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 // Base de datos
-const {appConfig, dbConfig} = require('./config')
+const {appConfig, dbConfig, dbCloud} = require('./config')
 const connectDb = require('./database/db')
 
 const express = require('express');
@@ -15,6 +15,7 @@ const bodyparser = require('body-parser');
 
 
 // Middlewares
+app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json()) // cada vez que llege un dato al servidor pasará por esta función y esta validará si está en formato json --> Alternativa a body-Parser
 
@@ -38,6 +39,24 @@ app.use('/public', express.static(`${__dirname}/../uploads/ppt`))
 console.log(`Directorio actual ====> ${__dirname}`)
 
 // Conexion a base de datos y inicializar servidor
+async function initApp(appConfig, dbCloud){ // para utilizarlo de forma local
+    try{
+        // Conectar DB
+        await connectDb(dbCloud)
+
+        // iniciar servidor
+        app.listen(appConfig.port, () => {
+            console.log(`Listen on port ${appConfig.port}`)
+        })
+
+    }catch (e) {
+        //Si hay error en la conexion de la db no se levanta el server
+        console.error(e)
+        process.exit(0)
+    }
+}
+
+/*
 async function initApp(appConfig, dbConfig){ // para utilizarlo de forma local
     try{
         // Conectar DB
@@ -54,5 +73,5 @@ async function initApp(appConfig, dbConfig){ // para utilizarlo de forma local
         process.exit(0)
     }
 }
-
-initApp(appConfig, dbConfig)
+*/
+initApp(appConfig, dbCloud)
