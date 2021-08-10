@@ -14,7 +14,11 @@ const cors = require('cors');
 const bodyparser = require('body-parser');
 
 
+const passport = require('passport')
+require('./database/passport')(passport)
+
 // Middlewares
+app.use(passport.initialize())
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json()) // cada vez que llege un dato al servidor pasará por esta función y esta validará si está en formato json --> Alternativa a body-Parser
