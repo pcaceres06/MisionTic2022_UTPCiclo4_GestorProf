@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Container,FormWrap,Icon,Form,FormButton,FormatContent,Text,FormatLabel,FormatInput,FormH1} from './RegisterElements'
 import Axios from 'axios'
+import Swal from 'sweetalert2'
 
 const Register = () => {
 
@@ -13,10 +14,18 @@ const Register = () => {
     const  registrarUser = async(e)=>{
         e.preventDefault()
         const newUser = {nombre, correo, telefono, password,esProfesor}
-        const resp = await Axios.post('http://localhost:4000/users/create-user', newUser)
+        const resp = await Axios.post('http://localhost:4000/users/register', newUser)
         const mensaje = resp.data.status
         console.log(mensaje)
-        alert(mensaje)
+        //alert(mensaje)
+        Swal.fire({
+            //position: 'top-end',
+            icon: 'success',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1000
+          })
+          e.target.reset()
     }
 
     return (

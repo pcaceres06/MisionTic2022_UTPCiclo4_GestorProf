@@ -11,7 +11,8 @@ const config = {
     dbCloud:{
         dbUser:process.env.DB_USER,
         dbPass:process.env.DB_PASS,
-        dbName:process.env.DB_NAME
+        dbName:process.env.DB_NAME,
+        secretOrKey: process.env.SECRET_KEY
     }
 }
 
