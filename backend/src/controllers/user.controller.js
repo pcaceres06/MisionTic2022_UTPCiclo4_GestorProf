@@ -25,32 +25,13 @@ userCtrl.crear= async (req,res)=>{
     if (user){
         return res.status(400).json({status:'El correo ya se encuentra registrado'})
     } else{
-
-        if (req.body.esProfesor === 'on'){
-            let {nombre, correo, telefono, password, esProfesor} = req.body
-            esProfesor = 1
-            const newUser = new User({nombre, correo, telefono, password, esProfesor})
-            
-            // Encriptar contraseña
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, async (err,hash) => {
-                    if (err) throw err
-                    newUser.password = hash
-                    await newUser.save()
-                    res.json({status:'Usuario registrado'})
-                    console.log(newUser)
-                    console.log(req.body)
-                })
-            })
-
-        } else{
-            const {nombre, correo, telefono, password, esProfesor} = req.body
-            const newUser = new User({nombre, correo, telefono, password, esProfesor})
-
-            // Encriptar contraseña
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, async (err,hash) => {
-                    if(err) throw err
+        const {nombre, correo, telefono, password} = req.body
+        const newUser = new User({nombre, correo, telefono, password})
+        
+        // Encriptar contraseña
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, async (err,hash) => {
+                if(err) throw err
                     newUser.password = hash
                     await newUser.save()
                     res.json({status:'Usuario registrado'})
@@ -58,15 +39,15 @@ userCtrl.crear= async (req,res)=>{
                     console.log(req.body)
                 })
             })
-        }
+        
 
     }
     
 }
 
 userCtrl.actualizar= async (req,res)=>{
-    const {nombre, correo, telefono, password, esProfesor} = req.body
-    const newUser = {nombre, correo, telefono, password, esProfesor}
+    const {nombre, correo, telefono, password} = req.body
+    const newUser = {nombre, correo, telefono, password}
     await User.findByIdAndUpdate(req.params.id, newUser)
     res.json({status:'Usuario actualizado'})
 }
